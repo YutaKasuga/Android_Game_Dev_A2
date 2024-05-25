@@ -11,6 +11,7 @@ public class Assignment2 extends Game implements ApplicationListener {
 	SpriteBatch batch;
 	public static MenuScreen menuScreen;
 	static Random random = new Random();
+	Enemy enemy;
 	
 	@Override
 	public void create () {
@@ -19,16 +20,21 @@ public class Assignment2 extends Game implements ApplicationListener {
 
 		// set the screen to menuScreen
 		setScreen(menuScreen);
+		// Create TEST enemy
+		enemy = new Enemy(100, 100, "enemy.png");
 	}
 
 	@Override
 	public void render () {
 		super.render();
+		enemy.update();
+		enemy.render(batch);
 	}
 	
 	@Override
 	public void dispose () {
 		super.dispose();
+		enemy.dispose();
 	}
 
 	@Override
