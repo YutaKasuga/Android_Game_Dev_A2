@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
+/*Note :: This class is mainly for testing Box2D for enemy or player class. Not For actual Game screen*/
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
