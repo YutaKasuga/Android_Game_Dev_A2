@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationListener;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.Game;
 
@@ -26,8 +27,9 @@ public class Assignment2 extends Game implements ApplicationListener {
 
 	@Override
 	public void render () {
+		float deltaTime = Gdx.graphics.getDeltaTime();
 		super.render();
-		enemy.update();
+		enemy.update(deltaTime);
 		enemy.render(batch);
 	}
 	
@@ -35,6 +37,7 @@ public class Assignment2 extends Game implements ApplicationListener {
 	public void dispose () {
 		super.dispose();
 		enemy.dispose();
+		batch.dispose();
 	}
 
 	@Override
