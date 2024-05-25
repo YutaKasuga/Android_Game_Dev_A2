@@ -261,6 +261,11 @@ public class Player implements CollidableObject{
                     //body.setLinearVelocity(-xSpeed,body.getLinearVelocity().y);
                     //velocityX = -xSpeed;
                 }
+
+                // case for the player is on the air, allocate gravity. (temporary solution due to having bug with box2D)
+                if (this.yPos > ground){
+                    this.yPos -= ySpeed;
+                }
                 //body.setLinearVelocity(this.xPos,body.getLinearVelocity().y);
                 break;
             case ATTACKING:
