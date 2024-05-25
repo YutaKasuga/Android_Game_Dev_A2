@@ -160,18 +160,18 @@ public class TestGameScreen implements Screen{
         float screenWidth = Gdx.graphics.getWidth();
         float screenHeight = Gdx.graphics.getHeight();
 
-        movingRightButton.setWidth(screenWidth / 2 - 100);
-        movingRightButton.setHeight(screenHeight - 350);
-        movingRightButton.setColor(1,1,1,0f); // change the button color to be transparent
-        movingRightButton.setPosition(0, 0);
+        movingRightButton.setWidth(350f);
+        movingRightButton.setHeight(200f);
+        //movingRightButton.setColor(1,1,1,0f); // change the button color to be transparent
+        movingRightButton.setPosition(0, screenHeight -300);
 
-        movingLeftButton.setWidth(screenWidth / 2 -100);
-        movingLeftButton.setHeight(screenHeight - 350);
-        movingLeftButton.setColor(1,1,1,0f);// change the button color to be transparent
-        movingLeftButton.setPosition(screenWidth / 2 + 100, 0);
+        movingLeftButton.setWidth(350f);
+        movingLeftButton.setHeight(200f);
+        //movingLeftButton.setColor(1,1,1,0f);// change the button color to be transparent
+        movingLeftButton.setPosition(screenWidth / 2 -200, screenHeight -300);
 
-        jumpButton.setWidth(450f);
-        jumpButton.setHeight(300f);
+        jumpButton.setWidth(350f);
+        jumpButton.setHeight(200f);
         jumpButton.setPosition(screenWidth -450, screenHeight -300);
 
         stage.addActor(movingRightButton);
