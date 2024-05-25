@@ -4,9 +4,13 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.Game;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class Assignment2 extends Game implements ApplicationListener {
 	SpriteBatch batch;
 	public static MenuScreen menuScreen;
+	static Random random = new Random();
 	
 	@Override
 	public void create () {
