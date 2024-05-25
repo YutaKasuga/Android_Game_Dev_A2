@@ -16,23 +16,23 @@ public class Enemy {
     private final Texture texture;
     private final float speed;
     private final EnemyState state;
-    private Texture spritesheet;
-    private Animation<TextureRegion> walkAnimation;
-    private float stateTime;
+    private final Texture enemyAnimation;
+    private final Animation<TextureRegion> walkAnimation;
+    private final float stateTime;
 
     public Enemy(float x, float y, String texturePath) {
         this.position = new Vector2(x, y);
         this.texture = new Texture(texturePath);
         this.speed = Config.ENEMY_INITIAL_MOVEMENT_SPEED;
         this.state = EnemyState.ALIVE;
-        this.spritesheet = new Texture(Gdx.files.internal("/assets/Enemy/Orc/Run/Run-Sheet.png"));
+        this.enemyAnimation = new Texture(Gdx.files.internal("/assets/Enemy/Orc/Run/Run-Sheet.png"));
 
 
         int frameCols = 6;
         int frameRows = 1;
-        TextureRegion[][] tmp = TextureRegion.split(spritesheet,
-                spritesheet.getWidth() / frameCols,
-                spritesheet.getHeight() / frameRows);
+        TextureRegion[][] tmp = TextureRegion.split(enemyAnimation,
+                enemyAnimation.getWidth() / frameCols,
+                enemyAnimation.getHeight() / frameRows);
 
         TextureRegion[] walkFrames = new TextureRegion[frameCols * frameRows];
         int index = 0;
@@ -55,7 +55,7 @@ public class Enemy {
 
     public void dispose() {
         texture.dispose();
-        spritesheet.dispose();
+        enemyAnimation.dispose();
     }
 
     public void update(float deltaTime) {
