@@ -1,0 +1,4 @@
+#Mon May 20 18:21:24 ACST 2024
+base.0=C\:\\Users\\Surface Laptop 5\\Downloads\\Android_Game_Dev_A2-main\\Android_Game_Dev_A2-main\\project\\android\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

@@ -13,6 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class MenuScreen implements Screen {
     Assignment2 game;
@@ -38,6 +40,9 @@ public class MenuScreen implements Screen {
     private static final float WORLD_WIDTH = (float)(Gdx.graphics.getWidth() * 1.05);;
     private static final float WORLD_HEIGHT = (float)(Gdx.graphics.getHeight() * 1.05);;
 
+    private Texture newGameButtonTexture;
+    private Texture exitButtonTexture;
+
     public MenuScreen(Assignment2 game, boolean isButtonDisabled){
         this.game = game;
         this.isButtonDisabled = isButtonDisabled;
@@ -50,8 +55,12 @@ public class MenuScreen implements Screen {
         this.skin = new Skin(Gdx.files.internal("gui/uiskin.json")); // need path after we found the skin <- current file is came from prac3.
 
         // set the background and title
-        this.background = new Texture("Repeated.png"); // need to set actual data <- current one is temporary setting
-        this.title = new Texture("Tittle.png"); // need to set the file, if we have <- current one is temporary setting
+        this.background = new Texture("MenuBackground.png"); // need to set actual data <- current one is temporary setting
+        this.title = new Texture("GameTitle.png"); // need to set the file, if we have <- current one is temporary setting
+
+        // set the button image
+        newGameButtonTexture = new Texture("NewGameButton.png");
+        exitButtonTexture = new Texture("ExitButton.png");
 
         // Set camera
         camera = new OrthographicCamera();
@@ -75,7 +84,7 @@ public class MenuScreen implements Screen {
 
         // set background, title, and buttons <- note: background and title is temporary solution. need to set actual data
         batch.draw(this.background, 0,0,WORLD_WIDTH,WORLD_HEIGHT);
-        batch.draw(this.title, screenWidth/ 2 - 600, screenHeight / 2);
+        batch.draw(this.title, screenWidth/ 2 - 950, screenHeight / 2 + 100);
         this.setButtons();
 
         stage.draw();
@@ -86,6 +95,9 @@ public class MenuScreen implements Screen {
     public void dispose(){
         this.background.dispose();
 
+        // Dispose of the textures for the buttons
+        newGameButtonTexture.dispose();
+        exitButtonTexture.dispose();
     }
 
     @Override
@@ -111,30 +123,25 @@ public class MenuScreen implements Screen {
 
     }
 
-    public void showTestGameScreen(){
+    public void toGameScreen(){
         // change the screen to the GameScreen, then set the buttons as disabled on this screen
-        // NOTE:: THIS CLASS IS ONLY FOR DEBUGGING PLAYER CLASS OR ENEMY CLASS TO HANDLE BOX2D
         this.isButtonDisabled = true;
-        TestGameScreen gameScreen = new TestGameScreen(this.game, false);
-        game.setScreen(gameScreen);
+        //game.setScreen();
+
     }
-    
     public void setButtons(){
         // set buttons, text, and title on the screen.
         // if the user is on other screen, disable every buttons events.
 
         // create and set button for starting new Game
-        final TextButton newGameButton = new TextButton("Start new game", skin, "default");
-        newGameButton.setWidth(600f);
-        newGameButton.setHeight(400f);
-        newGameButton.setPosition(screenWidth/ 3 - 300f, screenHeight / 3 - 300f);
+        // Create and set button for starting new Game
+        ImageButton newGameButton = new ImageButton(new TextureRegionDrawable(newGameButtonTexture));
+        newGameButton.setPosition(screenWidth / 3 - 500f, screenHeight / 3 - 200f);
         stage.addActor(newGameButton);
 
-        // create and set button for exit the game
-        final TextButton exitGameButton = new TextButton("Exit", skin, "default");
-        exitGameButton.setWidth(600f);
-        exitGameButton.setHeight(400f);
-        exitGameButton.setPosition(screenWidth/ 3 + 600f, screenHeight / 3 - 300f);
+        // Create and set button for exiting the game
+        ImageButton exitGameButton = new ImageButton(new TextureRegionDrawable(exitButtonTexture));
+        exitGameButton.setPosition(screenWidth / 3 + 500f, screenHeight / 3 - 200f);
         stage.addActor(exitGameButton);
 
         //
@@ -148,7 +155,7 @@ public class MenuScreen implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y){
                     // moving to game screen
-                    showTestGameScreen(); // NOTE:: THIS CLASS IS ONLY FOR DEBUGGING PLAYER CLASS OR ENEMY CLASS TO HANDLE BOX2D
+                    //toGameScreen();
                     Gdx.app.log("MenuScreen: ", "newGameButton has clicked");
                 }
             });
@@ -156,7 +163,7 @@ public class MenuScreen implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y){
                     // finish the application.
-                    //System.exit(-1); <- please enable here before submitting
+                    //System.exit(-1);
                     Gdx.app.log("MenuScreen: ", "exitGameButton has clicked");
                 }
             });
