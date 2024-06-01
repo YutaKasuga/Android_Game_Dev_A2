@@ -1,6 +1,5 @@
 package com.mygdx.game;
-
-/*Note :: This class is mainly for testing Box2D for enemy or player class. Not For actual Game screen*/
+/*This class is mainly for testing Box2D for enemy or player class. Not For actual Game screen*/
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -8,6 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -62,9 +62,6 @@ public class TestGameScreen implements Screen{
     public static final float GRAVITY = -10.0f;
     */
 
-
-
-
     public TestGameScreen(Assignment2 game, boolean isButtonDisabled) {
         this.game = game;
         this.isButtonDisabled = isButtonDisabled;
@@ -74,9 +71,9 @@ public class TestGameScreen implements Screen{
         //Gdx.app.log("GameScreen: ","game screen has created");
 
         /* create world which accept gravity from box2D*/
-        /* commented out due to having bug for box2D
-        //this.world = new World(new Vector2(0 ,GRAVITY),true);
-        //debugRenderer = new Box2DDebugRenderer();
+        /* commented out due to having bug with box2D
+        this.world = new World(new Vector2(0 ,GRAVITY),true);
+        debugRenderer = new Box2DDebugRenderer();
 
         // create ground as a static box
         PolygonShape groundShape = new PolygonShape();
@@ -135,6 +132,7 @@ public class TestGameScreen implements Screen{
 
 
         // display area of bounding box for player where has hit
+        /*
         this.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         this.shapeRenderer.setColor(Color.BLUE);
 
@@ -142,7 +140,7 @@ public class TestGameScreen implements Screen{
             this.shapeRenderer.rect(this.player.getBoundingBox().x+25, this.player.getBoundingBox().y,
                     this.player.getBoundingBox().width, this.player.getBoundingBox().height);
         }
-
+        */
         this.shapeRenderer.end();
     }
     public void update(){
@@ -253,11 +251,10 @@ public class TestGameScreen implements Screen{
                 // moving up
                 this.player.setPlayerStatus(Player.State.JUMPING);
 
-            } else if (!this.isJumpPressed) { // for down button in the second or third avobe ground
-                // moving down
-                this.player.setPlayerStatus(Player.State.FALLING);
+            } else if (!this.isJumpPressed && this.player.getPosition().y > 150) {
 
-            } else {
+                this.player.setPlayerStatus(Player.State.FALLING);
+            }else {
                 this.player.setPlayerStatus(Player.State.IDLE);
             }
         }
@@ -267,10 +264,7 @@ public class TestGameScreen implements Screen{
                 setPause();
             }
             */
-
     }
-
-
 
     @Override
     public void dispose(){
