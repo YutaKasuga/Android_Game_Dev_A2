@@ -66,11 +66,9 @@ public class ControlButton implements Disposable
     }
 
     public void render(SpriteBatch batch, Stage stage){
-        batch.begin();
+        //batch.begin();
         stage.addActor(table);
-
-
-        batch.end();
+        //batch.end();
     }
 
 

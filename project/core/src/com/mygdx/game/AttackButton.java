@@ -24,6 +24,8 @@ public class AttackButton
         Image left = new Image(new Texture("AttackLeftArrow.png"));
         Image right = new Image(new Texture("AttackRightArrow.png"));
 
+        this.table = new Table();
+
         up.setSize(100, 100);
         up.addListener(new InputListener() {
             @Override
@@ -80,22 +82,27 @@ public class AttackButton
             }
         });
 
-        table.right().bottom();
 
-        table.add();
-        table.add(up).size(up.getWidth(), up.getHeight());
-        table.add();
 
-        table.row().pad(5, 5, 5, 5);
-        table.add(left).size(left.getWidth(), left.getHeight());
-        table.add(down).size(down.getWidth(), down.getHeight());
-        table.add(right).size(right.getWidth(), right.getHeight());
+
+
+        this.table.bottom().right();
+        this.table.setFillParent(true);
+
+        this.table.add();
+        this.table.add(up).size(up.getWidth(), up.getHeight());
+        this.table.add();
+
+        this.table.row().pad(5, 5, 5, 5);
+        this.table.add(left).size(left.getWidth(), left.getHeight());
+        this.table.add(down).size(down.getWidth(), down.getHeight());
+        this.table.add(right).size(right.getWidth(), right.getHeight());
     }
 
     public void render(SpriteBatch batch, Stage stage){
-        batch.begin();
-        stage.addActor(table);
-        batch.end();
+        //batch.begin();
+        stage.addActor(this.table);
+        //batch.end();
     }
 
 

@@ -54,7 +54,6 @@ public class TestGameScreen implements Screen{
 
     //Control Button class ----------------------- Hoi
     private final ControlButton playerButton;
-
     private final AttackButton attackButton;
 
     /*Section for Box2D (Gravity handling)*/
@@ -129,10 +128,12 @@ public class TestGameScreen implements Screen{
         //this.world.step(BOX_STEP, BOX_VELOCITY_ITERATIONS, BOX_POSITION_ITERATIONS);
         ScreenUtils.clear(0,0,0,1);
 
-        this.playerButton.render(this.batch, this.stage);
-        this.attackButton.render(this.batch, this.stage);
+
 
         this.batch.begin();
+
+        this.playerButton.render(this.batch, this.stage);
+        this.attackButton.render(this.batch, this.stage);
 
         /* draw the background */
         batch.draw(this.background, 0,0,WORLD_WIDTH,WORLD_HEIGHT);
