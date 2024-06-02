@@ -13,8 +13,14 @@ import com.badlogic.gdx.utils.Disposable;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentMap;
 
-public class AttackCommand
+public class AttackCommand implements Disposable
 {
+    @Override
+    public void dispose()
+    {
+
+    }
+
     public static enum CommandInput {UP,  DOWN, LEFT, RIGHT, ERROR}
     public ArrayList<CommandInput> commandStringList;
     public ArrayList<CommandInput> notDoneList;
@@ -33,21 +39,32 @@ public class AttackCommand
         }
     }
 
-    public void enterCommand(String commandIn)
+    public boolean enterCommand(String commandIn)
     {
-        CommandInput currentInput = this.strConvert(commandIn);
-        if(currentInput == notDoneList.get(0))
+
+            CommandInput currentInput = this.strConvert(commandIn);
+            if(currentInput == notDoneList.get(0))
+            {
+                //Gdx.app.log("INPUT", this.commandConvert(this.notDoneList.get(0)));
+                CommandInput commandDone = this.notDoneList.remove(0);
+                this.doneList.add(commandDone);
+            }
+            else
+            {
+                this.doneList.clear();
+                this.notDoneList.clear();
+                this.notDoneList.addAll(this.commandStringList);
+            }
+
+        if(!this.notDoneList.isEmpty())
         {
-            //Gdx.app.log("INPUT", this.commandConvert(this.notDoneList.get(0)));
-            CommandInput commandDone = this.notDoneList.remove(0);
-            this.doneList.add(commandDone);
+            return false;
         }
         else
         {
-            this.doneList.clear();
-            this.notDoneList.clear();
-            this.notDoneList.addAll(this.commandStringList);
+            return true;
         }
+
     }
 
     private CommandInput strConvert (String strIn)

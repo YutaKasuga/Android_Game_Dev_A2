@@ -57,7 +57,8 @@ public class TestGameScreen implements Screen{
     private final AttackButton attackButton;
 
     //Attack Command class ----------------------- Hoi
-    private final AttackCommand attackCommand;
+    //should be a list of command but just for testing
+    private AttackCommand attackCommand;
 
     /*Section for Box2D (Gravity handling)*/
     /* commented out due to having bug
@@ -79,7 +80,7 @@ public class TestGameScreen implements Screen{
         this.attackButton = new AttackButton();
 
         //Attack command class ----------------------- Hoi
-        String[] commandArr = {"up","right","down","down","down","up"};
+        String[] commandArr = {"up","right","down","down","down"};
         this.attackCommand = new AttackCommand(commandArr);
         this.attackCommand.displayLists();
 
@@ -290,29 +291,42 @@ public class TestGameScreen implements Screen{
             }
         }
 
+        //Attack command ----------------------- Hoi
+        boolean done = false;
+
         if(this.attackButton.upAttack)
         {
             this.attackButton.upAttack = false;
-            this.attackCommand.enterCommand("up");
+            done = this.attackCommand.enterCommand("up");
             this.attackCommand.displayLists();
         }
         else if(this.attackButton.downAttack)
         {
             this.attackButton.downAttack = false;
-            this.attackCommand.enterCommand("down");
+            done = this.attackCommand.enterCommand("down");
             this.attackCommand.displayLists();
         }
         else if(this.attackButton.leftAttack)
         {
             this.attackButton.leftAttack = false;
-            this.attackCommand.enterCommand("left");
+            done = this.attackCommand.enterCommand("left");
             this.attackCommand.displayLists();
         }
         else if(this.attackButton.rightAttack)
         {
             this.attackButton.rightAttack = false;
-            this.attackCommand.enterCommand("right");
+            done = this.attackCommand.enterCommand("right");
             this.attackCommand.displayLists();
+        }
+        if(done)
+        {
+            Gdx.app.log("COMMAND","DONE!!!!!!");
+            //should change
+            this.attackCommand.dispose();
+
+            //placeholder to keep the program running
+            String[] newCommand = {"up","right","down","down","down"};
+            this.attackCommand = new AttackCommand(newCommand);
         }
 
             /*
