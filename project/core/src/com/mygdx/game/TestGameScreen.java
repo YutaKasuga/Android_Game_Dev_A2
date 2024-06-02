@@ -52,8 +52,10 @@ public class TestGameScreen implements Screen{
     private static final float WORLD_WIDTH = (float)(Gdx.graphics.getWidth() * 1.05);;
     private static final float WORLD_HEIGHT = (float)(Gdx.graphics.getHeight() * 1.05);;
 
-    //Control Button class -----------------------
-    private  ControlButton playerButton;
+    //Control Button class ----------------------- Hoi
+    private final ControlButton playerButton;
+
+    private final AttackButton attackButton;
 
     /*Section for Box2D (Gravity handling)*/
     /* commented out due to having bug
@@ -70,8 +72,9 @@ public class TestGameScreen implements Screen{
         this.isButtonDisabled = isButtonDisabled;
 
 
-        //Control Button class -----------------------
+        //Control Button class ----------------------- Hoi
         this.playerButton = new ControlButton();
+        this.attackButton = new AttackButton();
 
     }
 
@@ -127,6 +130,7 @@ public class TestGameScreen implements Screen{
         ScreenUtils.clear(0,0,0,1);
 
         this.playerButton.render(this.batch, this.stage);
+        this.attackButton.render(this.batch, this.stage);
 
         this.batch.begin();
 
