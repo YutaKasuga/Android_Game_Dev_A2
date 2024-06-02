@@ -56,6 +56,9 @@ public class TestGameScreen implements Screen{
     private final ControlButton playerButton;
     private final AttackButton attackButton;
 
+    //Attack Command class ----------------------- Hoi
+    private final AttackCommand attackCommand;
+
     /*Section for Box2D (Gravity handling)*/
     /* commented out due to having bug
     private World world;
@@ -74,6 +77,11 @@ public class TestGameScreen implements Screen{
         //Control Button class ----------------------- Hoi
         this.playerButton = new ControlButton();
         this.attackButton = new AttackButton();
+
+        //Attack command class ----------------------- Hoi
+        String[] commandArr = {"up","right","down","down","down"};
+        this.attackCommand = new AttackCommand(commandArr);
+        this.attackCommand.displayLists();
 
     }
 
@@ -280,6 +288,23 @@ public class TestGameScreen implements Screen{
             }else {
                 this.player.setPlayerStatus(Player.State.IDLE);
             }
+        }
+
+        if(this.attackButton.upAttack)
+        {
+            this.attackCommand.enterCommand("up");
+        }
+        else if(this.attackButton.downAttack)
+        {
+            this.attackCommand.enterCommand("down");
+        }
+        else if(this.attackButton.leftAttack)
+        {
+            this.attackCommand.enterCommand("left");
+        }
+        else if(this.attackButton.rightAttack)
+        {
+            this.attackCommand.enterCommand("right");
         }
 
             /*

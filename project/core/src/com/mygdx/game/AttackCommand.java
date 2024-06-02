@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Disposable;
 
 import java.util.ArrayList;
+import java.util.concurrent.ConcurrentMap;
 
 public class AttackCommand
 {
@@ -27,7 +28,7 @@ public class AttackCommand
 
         for (int i = 0; i < inList.length ;i++)
         {
-            this.commandStringList.set(i,this.strConvert(inList[i]));
+            this.commandStringList.add(i,this.strConvert(inList[i]));
         }
         this.doneList = this.commandStringList;
     }
@@ -61,4 +62,32 @@ public class AttackCommand
         }
         return CommandInput.ERROR;
     }
+
+    private String commandConvert (CommandInput comIn)
+    {
+        switch (comIn)
+        {
+            case UP:
+                return "^";
+            case DOWN:
+                return "v";
+            case RIGHT:
+                return ">";
+            case LEFT:
+                return "<";
+        }
+        return "Error";
+    }
+
+
+    public void displayLists()
+    {
+        String commandStr = " ";
+        for (int i = 0; i < this.commandStringList.size() ;i++)
+        {
+            commandStr = commandStr + " " + this.commandConvert(commandStringList.get(i));
+        }
+        Gdx.app.log("ATTACK COMMAND", commandStr);
+    }
+
 }
