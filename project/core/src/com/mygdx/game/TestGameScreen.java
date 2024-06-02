@@ -128,8 +128,6 @@ public class TestGameScreen implements Screen{
         //this.world.step(BOX_STEP, BOX_VELOCITY_ITERATIONS, BOX_POSITION_ITERATIONS);
         ScreenUtils.clear(0,0,0,1);
 
-
-
         this.batch.begin();
 
         this.playerButton.render(this.batch, this.stage);
@@ -146,9 +144,6 @@ public class TestGameScreen implements Screen{
 
         stage.draw();
         this.batch.end();
-
-
-
         // display area of bounding box for player where has hit
         /*
         this.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
@@ -254,6 +249,11 @@ public class TestGameScreen implements Screen{
 
 
         }
+    }
+
+    public void attackInput()
+    {
+        //if(this.attackButton.downAttack)
     }
 
     public void input(){

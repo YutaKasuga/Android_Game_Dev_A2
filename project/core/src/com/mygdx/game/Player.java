@@ -262,9 +262,9 @@ public class Player implements CollidableObject{
         //float velocityX = 0;
         //Gdx.app.log("Player xPos(body): ", String.valueOf(this.body.getPosition().x));
         //Gdx.app.log("Player yPos(body): ", String.valueOf(this.body.getPosition().y));
-        Gdx.app.log("Player xPos(actual): ", String.valueOf(this.xPos));
-        Gdx.app.log("Player yPos(actual): ", String.valueOf(this.yPos));
-        Gdx.app.log("Player status: ", String.valueOf(this.playerStatus));
+        //Gdx.app.log("Player xPos(actual): ", String.valueOf(this.xPos));
+        //Gdx.app.log("Player yPos(actual): ", String.valueOf(this.yPos));
+        //Gdx.app.log("Player status: ", String.valueOf(this.playerStatus));
 
 
         // if player is trying to go under the ground, prevent it and set the yPos and ySpeed to 0. Then change the state to IDLE
