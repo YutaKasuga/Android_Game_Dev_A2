@@ -29,8 +29,8 @@ public class AttackCommand
         for (int i = 0; i < inList.length ;i++)
         {
             this.commandStringList.add(i,this.strConvert(inList[i]));
+            this.notDoneList.add(i,this.strConvert(inList[i]));
         }
-        this.doneList = this.commandStringList;
     }
 
     public void enterCommand(String commandIn)
@@ -38,12 +38,15 @@ public class AttackCommand
         CommandInput currentInput = this.strConvert(commandIn);
         if(currentInput == notDoneList.get(0))
         {
-            this.doneList.add(0,notDoneList.remove(0));
+            //Gdx.app.log("INPUT", this.commandConvert(this.notDoneList.get(0)));
+            CommandInput commandDone = this.notDoneList.remove(0);
+            this.doneList.add(commandDone);
         }
         else
         {
             this.doneList.clear();
-            this.notDoneList = this.commandStringList;
+            this.notDoneList.clear();
+            this.notDoneList.addAll(this.commandStringList);
         }
     }
 
@@ -82,12 +85,28 @@ public class AttackCommand
 
     public void displayLists()
     {
-        String commandStr = " ";
+        String commandStr = "";
         for (int i = 0; i < this.commandStringList.size() ;i++)
         {
-            commandStr = commandStr + " " + this.commandConvert(commandStringList.get(i));
+            commandStr = commandStr + "" + this.commandConvert(commandStringList.get(i));
         }
         Gdx.app.log("ATTACK COMMAND", commandStr);
+
+        String commandStr2 = "";
+        for (int i = 0; i < this.doneList.size() ;i++)
+        {
+            commandStr2 = commandStr2 + "" + this.commandConvert(doneList.get(i));
+        }
+
+        Gdx.app.log("DONE COMMAND", commandStr2);
+
+        String commandStr3 = " ";
+        for (int i = 0; i < this.notDoneList.size() ;i++)
+        {
+            commandStr3 = commandStr3 + "" + this.commandConvert(notDoneList.get(i));
+        }
+
+        Gdx.app.log("NOT DONE COMMAND", commandStr3);
     }
 
 }

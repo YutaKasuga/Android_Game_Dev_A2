@@ -79,7 +79,7 @@ public class TestGameScreen implements Screen{
         this.attackButton = new AttackButton();
 
         //Attack command class ----------------------- Hoi
-        String[] commandArr = {"up","right","down","down","down"};
+        String[] commandArr = {"up","right","down","down","down","up"};
         this.attackCommand = new AttackCommand(commandArr);
         this.attackCommand.displayLists();
 
@@ -292,19 +292,24 @@ public class TestGameScreen implements Screen{
 
         if(this.attackButton.upAttack)
         {
+
             this.attackCommand.enterCommand("up");
+            this.attackCommand.displayLists();
         }
         else if(this.attackButton.downAttack)
         {
             this.attackCommand.enterCommand("down");
+            this.attackCommand.displayLists();
         }
         else if(this.attackButton.leftAttack)
         {
             this.attackCommand.enterCommand("left");
+            this.attackCommand.displayLists();
         }
         else if(this.attackButton.rightAttack)
         {
             this.attackCommand.enterCommand("right");
+            this.attackCommand.displayLists();
         }
 
             /*
