@@ -10,66 +10,55 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Disposable;
 
+import java.util.ArrayList;
+
 public class AttackCommand
 {
-    public static enum CommandInput {UP,  DOWN, LEFT, RIGHT}
-    public CommandInput[] commandStringList;
-    public CommandInput[] notDoneList;
-    public CommandInput[] doneList;
+    public static enum CommandInput {UP,  DOWN, LEFT, RIGHT, ERROR}
+    public ArrayList<CommandInput> commandStringList;
+    public ArrayList<CommandInput> notDoneList;
+    public ArrayList<CommandInput> doneList;
 
     public AttackCommand(String[] inList)
     {
-        this.commandStringList = new CommandInput[10];
-        this.notDoneList = new CommandInput[10];
-        this.doneList = new CommandInput[10];
+        this.commandStringList = new ArrayList<CommandInput>();
+        this.notDoneList = new ArrayList<CommandInput>();
+        this.doneList = new ArrayList<CommandInput>();
 
-        for (int i = inList.length -1; i > -1;i--)
+        for (int i = 0; i < inList.length ;i++)
         {
-            switch(inList[i])
-            {
-                case "up":
-                    commandStringList[i] = CommandInput.UP;
-                    break;
-                case "down":
-                    commandStringList[i] = CommandInput.DOWN;
-                    break;
-                case "right":
-                    commandStringList[i] = CommandInput.RIGHT;
-                    break;
-                case "left":
-                    commandStringList[i] = CommandInput.LEFT;
-                    break;
-
-            }
+            this.commandStringList.set(i,this.strConvert(inList[i]));
         }
         this.doneList = this.commandStringList;
     }
 
     public void enterCommand(String commandIn)
     {
-        CommandInput currentInput;
-        switch(commandIn)
+        CommandInput currentInput = this.strConvert(commandIn);
+        if(currentInput == notDoneList.get(0))
         {
-            case "up":
-                currentInput = CommandInput.UP;
-                break;
-            case "down":
-                currentInput = CommandInput.DOWN;
-                break;
-            case "right":
-                currentInput = CommandInput.RIGHT;
-                break;
-            case "left":
-                currentInput = CommandInput.LEFT;
-                break;
-
+            this.doneList.add(0,notDoneList.remove(0));
         }
-
-
-
-
+        else
+        {
+            this.doneList.clear();
+            this.notDoneList = this.commandStringList;
+        }
     }
 
-
-
+    private CommandInput strConvert (String strIn)
+    {
+        switch (strIn)
+        {
+            case "up":
+                return CommandInput.UP;
+            case "down":
+                return CommandInput.DOWN;
+            case "right":
+                return CommandInput.RIGHT;
+            case "left":
+                return CommandInput.LEFT;
+        }
+        return CommandInput.ERROR;
+    }
 }
