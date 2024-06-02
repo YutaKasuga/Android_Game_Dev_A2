@@ -292,22 +292,25 @@ public class TestGameScreen implements Screen{
 
         if(this.attackButton.upAttack)
         {
-
+            this.attackButton.upAttack = false;
             this.attackCommand.enterCommand("up");
             this.attackCommand.displayLists();
         }
         else if(this.attackButton.downAttack)
         {
+            this.attackButton.downAttack = false;
             this.attackCommand.enterCommand("down");
             this.attackCommand.displayLists();
         }
         else if(this.attackButton.leftAttack)
         {
+            this.attackButton.leftAttack = false;
             this.attackCommand.enterCommand("left");
             this.attackCommand.displayLists();
         }
         else if(this.attackButton.rightAttack)
         {
+            this.attackButton.rightAttack = false;
             this.attackCommand.enterCommand("right");
             this.attackCommand.displayLists();
         }

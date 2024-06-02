@@ -17,6 +17,17 @@ public class AttackButton
     public boolean upAttack, downAttack, leftAttack, rightAttack;
     private Vector2 position;
 
+    private void clickButton(Image button){
+        InputEvent inputEvent = new InputEvent();
+        inputEvent.setRelatedActor(button);
+
+        inputEvent.setType(InputEvent.Type.touchDown);
+        button.fire(inputEvent);
+
+        inputEvent.setType(InputEvent.Type.touchUp);
+        button.fire(inputEvent);
+    }
+
     public AttackButton()
     {
         Image up = new Image(new Texture("AttackUpArrow.png"));
@@ -32,12 +43,13 @@ public class AttackButton
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
                 upAttack = true;
                 Gdx.app.log("Controller: ","up attack clicked");
+                //upAttack = false;
                 return true;
             }
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                upAttack = false;
-            }
+//            @Override
+//            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+//                upAttack = false;
+//            }
         });
 
         down.setSize(100, 100);
@@ -47,10 +59,6 @@ public class AttackButton
                 downAttack = true;
                 Gdx.app.log("Controller: ","down attack clicked");
                 return true;
-            }
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                downAttack = false;
             }
         });
 
@@ -62,10 +70,6 @@ public class AttackButton
                 Gdx.app.log("Controller: ","left attack clicked");
                 return true;
             }
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                leftAttack = false;
-            }
         });
 
         right.setSize(100, 100);
@@ -75,10 +79,6 @@ public class AttackButton
                 rightAttack = true;
                 Gdx.app.log("Controller: ","rightAttack attack clicked");
                 return true;
-            }
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                rightAttack = false;
             }
         });
 
