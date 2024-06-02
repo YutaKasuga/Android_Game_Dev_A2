@@ -52,6 +52,9 @@ public class TestGameScreen implements Screen{
     private static final float WORLD_WIDTH = (float)(Gdx.graphics.getWidth() * 1.05);;
     private static final float WORLD_HEIGHT = (float)(Gdx.graphics.getHeight() * 1.05);;
 
+    //Control Button class -----------------------
+    private  ControlButton playerButton;
+
     /*Section for Box2D (Gravity handling)*/
     /* commented out due to having bug
     private World world;
@@ -65,6 +68,11 @@ public class TestGameScreen implements Screen{
     public TestGameScreen(Assignment2 game, boolean isButtonDisabled) {
         this.game = game;
         this.isButtonDisabled = isButtonDisabled;
+
+
+        //Control Button class -----------------------
+        this.playerButton = new ControlButton();
+
     }
 
     public void create(){
@@ -101,7 +109,7 @@ public class TestGameScreen implements Screen{
         this.camera.setToOrtho(false, background.getHeight() * screenRatio, background.getHeight());
         this.viewport = new FitViewport(screenWidth * screenRatio, screenHeight * screenRatio);
 
-        setButton(this.isButtonDisabled);
+        //setButton(this.isButtonDisabled);
         //this.player = new Player(game, this.world); // with box2D version. (having bug)
         this.player = new Player(game);
         this.isPaused = false;
@@ -117,6 +125,9 @@ public class TestGameScreen implements Screen{
     public void render(float f){
         //this.world.step(BOX_STEP, BOX_VELOCITY_ITERATIONS, BOX_POSITION_ITERATIONS);
         ScreenUtils.clear(0,0,0,1);
+
+        this.playerButton.render(this.batch, this.stage);
+
         this.batch.begin();
 
         /* draw the background */
@@ -127,8 +138,10 @@ public class TestGameScreen implements Screen{
         this.input();
         this.player.render(this.batch);
 
+
         stage.draw();
         this.batch.end();
+
 
 
         // display area of bounding box for player where has hit
@@ -159,6 +172,11 @@ public class TestGameScreen implements Screen{
         final TextButton jumpButton = new TextButton("Jump", skin, "default");
         float screenWidth = Gdx.graphics.getWidth();
         float screenHeight = Gdx.graphics.getHeight();
+
+
+
+
+
 
         movingRightButton.setWidth(350f);
         movingRightButton.setHeight(200f);
@@ -237,12 +255,12 @@ public class TestGameScreen implements Screen{
         // update the condition of each button in render, when Player is not dead
         if (this.player.getPlayerStatus() != Player.State.DEATH) {
 
-            if (this.isMoveRightPressed) {  // for right button
+            if (this.playerButton.rightPressed) {  // for right button
                 // moving right
                 this.player.setPlayerStatus(Player.State.RUNNING);
                 this.player.setXDirection(true);
 
-            } else if(this.isMoveLeftPressed) { // for left button
+            } else if(this.playerButton.leftPressed) { // for left button
                 // moving left
                 this.player.setPlayerStatus(Player.State.RUNNING);
                 this.player.setXDirection(false);
