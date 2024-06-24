@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" width="40" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="5">
+ <tileset firstgid="1" source="Background_Sky.tsx"/>
+ <tileset firstgid="313" source="Tiles.tsx"/>
+ <tileset firstgid="445" source="Trees.tsx"/>
+ <tileset firstgid="522" source="Props.tsx"/>
+ <tileset firstgid="666" source="Salt.tsx"/>
+ <layer id="1" name="Base_Sky" width="40" height="15">
+  <data encoding="base64" compression="zlib">
+   eJy11fefyAUYwPE757g755zbDscZt93g7ihSspNIQ1GRooHQMENDpeyZChmVFmkYbaUSKVFkVYqGkWwS8u5vuK8f3r89r8/r9Ty/PJEhISFRVCKaysRQhViqEkc8CSSSRDIphFKOMMoTTgUqEkFkGfvp1KEu9ahPBplkkU0OueTRgHwKKKQaqVSnBjVJoxa1A+hfxMU0pRmX0JxLuYwWXE5LWtGaNrSlHUU0pBHFlFBKY5oE0L+aLlzDtVzH9XTlBm6kG925iZu5hR70pD1X0IEr6chVdKJzAP27uJu+9KM/9zCAgQziXu7jfh5gMEMYyq304jZupzd9uIM7A+g/zCM8yhge43GeYCxP8hTjGM8EJjKJyQxjOCN4kJGMYjQPBdB/hmd5jtnMYS7PM4/5LGAhL/AiL7GIl5nCVKYxnRnM5GlmBdB/k7d4m3dYxnJWsJJ3eY/3+YAP+YiPWcUrvMprvM5ilvAGSwPor2UdX7Ger/mGDXzLRjbxHd+zmS38wFY+4VNW8xmf8wVr+DKA/i/8ym728Bu/8wd/spd97OcAf3GQvznENrazg538yE/8zK4A+v9wmn85w1nO8R//P4dQyhFGecKpQEUiOGzsCEc5xnFOcJJTAfSrEkc8CSSSRDIpVCOV6tSgJmnUojaRRFGJaCoTQxViA+hnk0MueTQgnwIKKaIhjSimhFIa04R06lCXetQng0yyAuiXdf8Lfb+y7n+h73ce8/jpfw==
+  </data>
+ </layer>
+ <layer id="2" name="Ground" width="40" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwShABbaMDAx2QGzPiGBHQDG9xe2h4sh8DyD2BGIvJHYyFNNb3AsqjswHAHgKF6U=
+  </data>
+ </layer>
+ <layer id="3" name="Details_Back" width="40" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzti6ERgEAMBPP9FwUKFKhHgQIFCjr4KyDJJAOGmVu5dytCCCGEvKcrIn355r/Cb8pm+QgDujHRev8d/lA2y0eY0M2J1vuf8JeyWT5CRbckWu9/wz/KZvk/0gCjzhsh
+  </data>
+ </layer>
+ <layer id="5" name="Details_front" width="40" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztkzsSAUEURbt7ERYwy/b//9kDEiRIkCBBggQLcASqpt50qa5OTJW+VSe5783rk4xSISEhIf+RrFEqB3nzaxN7CngVoZRSvzJeFagKv5FWagwTnfxmR7eHg/bfd71Tw6sODeE3ZT6DueW9I90Jztp/3/VOE68WtIXfgvkSVpb3LnRXuGn/fdc7Hby60BN+a+Yb2EIkZne6Bzxjs/j+JxmT3H8n+tLLO326AQxT+n/IvABU9kwD
+  </data>
+ </layer>
+ <objectgroup id="6" name="Objects">
+  <object id="2" name="Goal" x="1152" y="415.667" width="96.3333" height="32.6667"/>
+  <object id="4" name="Start" x="32.6667" y="415.667" width="32" height="32.6667"/>
+ </objectgroup>
+</map>

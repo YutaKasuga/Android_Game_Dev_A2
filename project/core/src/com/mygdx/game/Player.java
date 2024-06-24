@@ -1,32 +1,27 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.World;
 
 import java.util.ArrayList;
 
-public class Player implements CollidableObject{
+public class TestPlayer implements CollidableObject{
     /*
      Class for the player.
      */
 
     Assignment2 game;
+    private float frame;
 
     /* Section for textures */
-    Texture idleSheet;
-    Texture dyingSheet;
-    Texture runningSheet;
+    Texture[] idleSheet = new Texture[6];
+    Texture[] dyingSheet = new Texture[6];
+    Texture[] runningSheet = new Texture[6];
     Texture HPTexture; // if we need to set it as texture
     Texture righthandTexture;
     Texture lefthandTexture;
@@ -43,24 +38,13 @@ public class Player implements CollidableObject{
 
 
     /* section for animation */
-    private TextureRegion[] runningFrames;
-    private TextureRegion[] idleFrames;
-    private TextureRegion[] dyingFrames;
     private TextureRegion[] swordFrames; // only for sword animation.
 
-    private Animation idleAnimation;
-    private Animation runningAnimation;
-    private Animation dyingAnimation;
-    private TextureRegion currentFrame;
+
     private float stateTime = 0.0f;
-    private float frameDuration = 0.2f; // to customize animation speed
-    private static final int IDLE_FRAME_COLS = 4;
-    private static final int IDLE_FRAME_ROWS = 1;
-    private static final int RUNNING_FRAME_COLS = 6;
-    private static final int RUNNING_FRAME_ROWS = 1;
-    private float frame; // for animation
-    private static final float  HAND_OFFSET_X = 22;
-    private static final float  HAND_OFFSET_Y = 6;
+
+    private static final float  HAND_OFFSET_X = 22;  //22
+    private static final float  HAND_OFFSET_Y = 6; //6
 
     /* section for player's parameter and items */
     private int maxHP; // max HP for the player
@@ -93,19 +77,30 @@ public class Player implements CollidableObject{
     //private Body body;
 
     //public Player(Assignment2 game, World world){
-    public Player(Assignment2 game){
+    public TestPlayer(Assignment2 game){
         this.game = game;
 
         /* setting player's texture*/
-        this.idleSheet = new Texture("Heroes/Knight/Idle/Idle-Sheet.png");
-        this.runningSheet = new Texture("Heroes/Knight/Run/Run-Sheet.png");
-        this.dyingSheet = new Texture("Heroes/Knight/Death/Death-Sheet.png");
 
+        // setting texture for idling
+        for (int i = 0; i < 6; i++){
+            this.idleSheet[i] = new Texture("Heroes/Knight/Idle/Idle"+ i +".png");
+        }
+
+        // setting texture for running
+        for (int i = 0; i < 6; i++){
+            this.runningSheet[i] = new Texture("Heroes/Knight/Run/Run"+ i +".png");
+        }
+        // setting texture for dying
+        for (int i = 0; i < 6; i++){
+            this.dyingSheet[i] = new Texture("Heroes/Knight/Death/Death"+ i +".png");
+        }
+
+        // setting hands texture
         this.lefthandTexture = new Texture("Weapons/Hands/leftHand.png");
         this.righthandTexture = new Texture("Weapons/Hands/rightHand.png");
 
         /* setting weapons' texture for player*/
-        //
         this.boneShieldTexture = new Texture("Weapons/Bone/BoneShield.png");
         this.woodShieldTexture = new Texture("Weapons/Wood/WoodShield.png");
 
@@ -119,39 +114,6 @@ public class Player implements CollidableObject{
         this.woodArrowTexture = new Texture("Weapons/Wood/WoodArrow1.png");
         this.woodBowTexture = new Texture("Weapons/Wood/WoodBow.png");
         this.woodArrowShotTexture = new Texture("Weapons/Wood/WoodArrow2.png");
-
-        /* setting animation for State.IDLE */
-        TextureRegion[][] tempIdle = TextureRegion.split(idleSheet, idleSheet.getWidth() / IDLE_FRAME_COLS, idleSheet.getHeight() / IDLE_FRAME_ROWS);
-        idleFrames = new TextureRegion[IDLE_FRAME_COLS * IDLE_FRAME_ROWS];
-        int indexIdle = 0;
-        for (int i = 0; i < IDLE_FRAME_ROWS; i++) {
-            for (int j = 0; j < IDLE_FRAME_COLS; j++) {
-                idleFrames[indexIdle++] = tempIdle[i][j];
-            }
-        }
-        idleAnimation = new Animation(frameDuration,idleFrames);
-
-        /* setting animation for State.RUNNING*/
-        TextureRegion[][] tempRunning = TextureRegion.split(runningSheet, runningSheet.getWidth() / RUNNING_FRAME_COLS, runningSheet.getHeight() / RUNNING_FRAME_ROWS);
-        runningFrames = new TextureRegion[RUNNING_FRAME_COLS * RUNNING_FRAME_ROWS];
-        int indexRunning = 0;
-        for (int i = 0; i < RUNNING_FRAME_ROWS; i++) {
-            for (int j = 0; j < RUNNING_FRAME_COLS; j++) {
-                runningFrames[indexRunning++] = tempRunning[i][j];
-            }
-        }
-        runningAnimation = new Animation(frameDuration,runningFrames);
-
-        /* setting animation for State.DYING*/
-        TextureRegion[][] tempDying = TextureRegion.split(dyingSheet, dyingSheet.getWidth() / RUNNING_FRAME_COLS, dyingSheet.getHeight() / RUNNING_FRAME_ROWS);
-        dyingFrames = new TextureRegion[RUNNING_FRAME_COLS * RUNNING_FRAME_ROWS];
-        int indexDying = 0;
-        for (int i = 0; i < RUNNING_FRAME_ROWS; i++) {
-            for (int j = 0; j < RUNNING_FRAME_COLS; j++) {
-                dyingFrames[indexDying++] = tempDying[i][j];
-            }
-        }
-        dyingAnimation = new Animation(frameDuration,dyingFrames);
 
         /* Set player's status as initialising*/
         myWeapon = new BoneBow(this.game); // currently set the initial weapon as wood bow
@@ -199,22 +161,18 @@ public class Player implements CollidableObject{
 
         switch (this.playerStatus){
             case IDLE:
-
-                currentFrame = (TextureRegion)(idleAnimation.getKeyFrame(stateTime, true));
-                batch.draw(currentFrame,this.xPos, this.yPos);
+                batch.draw(this.idleSheet[(int)this.frame],this.xPos, this.yPos);
                 break;
 
             case RUNNING:
             case JUMPING:
             case FALLING:
                 // due to no assets for jump and fall status, set the texture as running.
-                currentFrame = (TextureRegion)(runningAnimation.getKeyFrame(stateTime, true));
-                batch.draw(currentFrame,this.xPos-19, this.yPos);
+                batch.draw(this.runningSheet[(int)this.frame],this.xPos, this.yPos);
 
                 break;
             case DEATH:
-                currentFrame = (TextureRegion)(dyingAnimation.getKeyFrame(stateTime, true));
-                batch.draw(currentFrame,this.xPos, this.yPos);
+                batch.draw(this.dyingSheet[(int)this.frame],this.xPos, this.yPos);
                 break;
 
             // need to set asset
@@ -226,6 +184,11 @@ public class Player implements CollidableObject{
         float rightHandX = this.xPos + HAND_OFFSET_X -19;
         float handY = this.yPos + HAND_OFFSET_Y;
         if (this.playerStatus != State.DEATH && this.playerStatus != State.ATTACKING){
+            if (this.playerStatus == State.RUNNING || this.playerStatus == State.FALLING || this.playerStatus == State.JUMPING){
+                // In case of states of above, add the both hand offset +19, due to the hand position will be unmatched.
+                leftHandX +=19;
+                rightHandX +=19;
+            }
             // draw hand and weapon assets
             if (this.myWeapon.getName().equals("WoodSword")){
                 batch.draw(woodSwordTexture, rightHandX-1, handY-3);
@@ -262,9 +225,9 @@ public class Player implements CollidableObject{
         //float velocityX = 0;
         //Gdx.app.log("Player xPos(body): ", String.valueOf(this.body.getPosition().x));
         //Gdx.app.log("Player yPos(body): ", String.valueOf(this.body.getPosition().y));
-        //Gdx.app.log("Player xPos(actual): ", String.valueOf(this.xPos));
-        //Gdx.app.log("Player yPos(actual): ", String.valueOf(this.yPos));
-        //Gdx.app.log("Player status: ", String.valueOf(this.playerStatus));
+        Gdx.app.log("Player xPos(actual): ", String.valueOf(this.xPos));
+        Gdx.app.log("Player yPos(actual): ", String.valueOf(this.yPos));
+        Gdx.app.log("Player status: ", String.valueOf(this.playerStatus));
 
 
         // if player is trying to go under the ground, prevent it and set the yPos and ySpeed to 0. Then change the state to IDLE
@@ -276,7 +239,7 @@ public class Player implements CollidableObject{
         }
 
         this.frame += 10 * dt;
-        if (this.frame >= 8){
+        if (this.frame >= 6){
             this.frame = 0;
         }
 
@@ -570,9 +533,12 @@ public class Player implements CollidableObject{
         this.woodArrowTexture.dispose();
         this.woodBowTexture.dispose();
         this.woodArrowShotTexture.dispose();
-        this.idleSheet.dispose();
-        this.runningSheet.dispose();
-        this.dyingSheet.dispose();
+        for (int i = 0; i < 6; i++){
+            this.idleSheet[i].dispose();
+            this.runningSheet[i].dispose();
+            this.dyingSheet[i].dispose();
+        }
+
     }
 
 
