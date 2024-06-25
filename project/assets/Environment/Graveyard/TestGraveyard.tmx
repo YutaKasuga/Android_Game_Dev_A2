@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-up" width="40" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="6">
+ <tileset firstgid="1" source="Background_Sky2.tsx"/>
+ <tileset firstgid="313" source="Background_House2.tsx"/>
+ <tileset firstgid="625" source="Tiles2.tsx"/>
+ <tileset firstgid="757" source="Salt2.tsx"/>
+ <layer id="1" name="Base_Sky" width="40" height="15">
+  <data encoding="base64" compression="zlib">
+   eJy11VWXkAUUhtGhGXrozqG7UbpBQhpFGkmlQZDu7pBGpZQGQUCUbulG6Q5ppASVzW/g42LfnfWs9V6d0JCQkBjEJBaxiUNc4hFGfBKQkEQkJglJiUBEIhGZKEQlGtEJfcd+OtKTgXAykonMZCEr2chODnKSi9zkIRnJSUFKUpGaNKQNoP8BH1KUYhSnBCUpRWnKUJZylKcCFalEXvKRnwIUpBCFKRJAvya1qE0d6lKP+nzCpzTgMxrSiMY0oSmV+YgqVKUa1fmYGgH029KOL/iS9nSgI53oTBe60o3ufEUPetKM5rTgc1rSita0CaA/kEEMZghDGcZwRjCSUYxmDGMZx3gm8DW96E0f+tKP/gwIoD+DmcxiNnOYy7d8x/fMYz4LWMgifuBHJjKJyUxhKt8wjekB9FfzE2tYy8+sYz0b+IWN/MpvbGIzW9jKYpawlGUsZwUrWRVAfx+/s58DHOQQhznCUY5xnBOc5BSnOcM2trODnexiN3vYG0D/Mle4yjWuc4Ob3OI2d/iLu9zjPg94yB/8yVnOcZ4LXORSAP2X/MMrXvMv//E/b59DBCISichEISrRiM4jZ495wt885RnPeRFAP4z4JCAhiUhMEpKSjOSkICWpSE0a0hJKDGISi9jEIS7xAuhnJRvZyUFOcpGbPOQlH/kpQEEKUZgipCM9GQgnI5nITJYA+u9rd1Cd97U7qM4btJfqlw==
+  </data>
+ </layer>
+ <layer id="2" name="Base_House" width="40" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztzPefzwUAwOHvXUOS0VBCdkORqJQ7HHfc3mfcmbcHN2iQsssoo6FEi4qGQmU0NK2ytQcNUqJhpEjI8z/c58fer9fz6zsU+r/q1D0sFIomhh70JJY44kkgkSSSSSGVNNLpRASRdKYLXYmiW1j1/zn0oz8DGMggBpNLHvkUUEgRxZRQSgaZZNGL3vShL9kB/IdzC7dyG7czgpHcwSju5C5GM4axjGM8ZQxhKOVUUEkVwwL438t9TGM6M5jJ/TzAgzzELB7mEWbzKHOYwETu5h4mMZkpTA3g/zTP8CwLWMhzPM8LvMgiXuJlFrOEpbzCXB7jcZ7gSZ5iHvMD+L/JW6zibd7hXd7jfT5gNWtYyzrW8yEf8SqvsYzlrGAlr/NGAP+P+YRP+YzP+YIv+Yqv+YYd7ORbvuN7fmADG9nEZrawlW1sD+C/j/38ym/8zh8c4CCHOMyfHOEv/uYox9jFbn5kDz/xM3v5JYB/WHgoFM4ZnMlZnE0NzqEm51KL86hNHepSj388jvMvJzjJKf4jFF79/6U0pBGNuYwmNKUZzWlBS1pxOVdwJVdxPhdwIRdRn4u5hAYB/NvTgeu5gRvpyE3cTCciiKQzXehKFN1ozdVcQxvaci3tuC6AfwKJJJFMCqmkkU4GmWTRi970oS/ZdCeaGHrQk1jiiA/gn0c+BRRSRDEllFLGEIZSTgWVVDGMHPrRnwEMZBCDyQ3gfxpsyfSu
+  </data>
+ </layer>
+ <layer id="3" name="Ground" width="40" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztjUsKgDAMREvPrju17tR6GT9LP2dyChVCaW1E3OXBozCdJEoJgiAIwr9MWqkZLv6lumzV/JlU/wsb9u3w8C/VZWfkXmom1X9LGdlRMLOn/1z/pkKvhg1svbnMMDM6a4LMMO92sIcDHL25zDIzOmuDzDLvXljjTBs=
+  </data>
+ </layer>
+ <layer id="4" name="Details" width="40" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzt0UkKgDAQRNG243j/07n3Cs7jdytZJiRgf6j9gxKxLMv6R6OKTGzW1BJ/C66VbZn6dlwHOzP1Xbju1+ZSS/wVuJS5AL4+wgclrorVAXxDBF+Dq2Vdpv9+ewBKawzh
+  </data>
+ </layer>
+ <objectgroup id="5" name="Objects">
+  <object id="1" name="Goal" x="1184" y="416" width="33" height="32"/>
+  <object id="3" name="SecondGround" x="352.75" y="351" width="286.5" height="20"/>
+  <object id="4" name="SecondGround" x="768" y="351" width="255.25" height="20.75"/>
+  <object id="5" name="Start" x="33" y="417.5" width="30.75" height="30.5"/>
+ </objectgroup>
+</map>

@@ -111,12 +111,14 @@ public class MenuScreen implements Screen {
 
     }
 
-    public void toGameScreen(){
+    public void showTestGameScreen(){
         // change the screen to the GameScreen, then set the buttons as disabled on this screen
+        // NOTE:: THIS CLASS IS ONLY FOR DEBUGGING PLAYER CLASS OR ENEMY CLASS TO HANDLE BOX2D
         this.isButtonDisabled = true;
-        //game.setScreen();
-
+        TestGameScreen gameScreen = new TestGameScreen(this.game, false);
+        game.setScreen(gameScreen);
     }
+    
     public void setButtons(){
         // set buttons, text, and title on the screen.
         // if the user is on other screen, disable every buttons events.
@@ -146,7 +148,7 @@ public class MenuScreen implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y){
                     // moving to game screen
-                    //toGameScreen();
+                    showTestGameScreen(); // NOTE:: THIS CLASS IS ONLY FOR DEBUGGING PLAYER CLASS OR ENEMY CLASS TO HANDLE BOX2D
                     Gdx.app.log("MenuScreen: ", "newGameButton has clicked");
                 }
             });
@@ -154,7 +156,7 @@ public class MenuScreen implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y){
                     // finish the application.
-                    //System.exit(-1);
+                    //System.exit(-1); <- please enable here before submitting
                     Gdx.app.log("MenuScreen: ", "exitGameButton has clicked");
                 }
             });
